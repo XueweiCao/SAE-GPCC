@@ -1,4 +1,4 @@
-## Directory
+## Structure
 For training and testing, your directory structure should look like this  
 `Datasets` <br/>
  `├──train`  <br/>
