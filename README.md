@@ -7,3 +7,14 @@ Xuewei Cao, Wenbiao Zhou, Shuyu Yan, Genpei Liu
 
 ## Compression Architecture
 <img src = "compression_architecture.png">
+
+## Installation
+pip install -r requirements.txt
+
+## train
+python ./train.py
+Train results will be saved in ./run/train/
+
+## test
+python ./test.py
+Test results will be saved in ./run/test/
