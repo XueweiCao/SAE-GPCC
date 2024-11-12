@@ -11,10 +11,10 @@ Xuewei Cao, Wenbiao Zhou, Shuyu Yan, Genpei Liu
 ## Installation
 pip install -r requirements.txt
 
-## train
+## Train
 python ./train.py  
 Train results will be saved in ./run/train/
 
-## test
+## Test
 python ./test.py  
 Test results will be saved in ./run/test/
