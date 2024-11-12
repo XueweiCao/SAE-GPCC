@@ -1,6 +1,6 @@
 ## Structure
 For training and testing, your directory structure should look like this  
-`Datasets` <br/>
+`datasets` <br/>
  `├──train`  <br/>
  `└──test`  <br/>
 
