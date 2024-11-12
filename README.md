@@ -6,3 +6,4 @@ Xuewei Cao, Wenbiao Zhou, Shuyu Yan, Genpei Liu
 <hr />
 
 ## Compression Architecture
+<img src = "">
