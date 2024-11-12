@@ -9,12 +9,29 @@ Xuewei Cao, Wenbiao Zhou, Shuyu Yan, Genpei Liu
 <img src = "compression_architecture.png">
 
 ## Installation
+1. Clone our repository
+```
+git clone https://github.com/XueweiCao/SAE-GPCC.git
+cd SAE-GPCC
+```
+2. Make conda environment
+```
+conda create -n sae_gpcc python = 3.10
+conda activate sae_gpcc
+```
+3. Install dependencies
+```
 pip install -r requirements.txt
+```
 
 ## Train
-python ./train.py  
+```
+python ./train.py
+```
 Train results will be saved in ./run/train/
 
 ## Test
-python ./test.py  
+```
+python ./test.py
+``` 
 Test results will be saved in ./run/test/
