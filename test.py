@@ -94,9 +94,9 @@ def single_frame_test(pcd_path, re_pcd_path, bit_num, models, device):
 
     BitPerPoint = get_BPP(encoded, npoint)
     re_pcd = save_pcd(re_points, re_pcd_path)
-    PeakSignalNoiseRation = get_PSNR(pcd, re_pcd)
+    c2c_PSNR, c2p_PSNR = get_PSNR(pcd, re_pcd)
 
-    return BitPerPoint, PeakSignalNoiseRation
+    return BitPerPoint, c2c_PSNR, c2p_PSNR
 
 
 def datasets_test(test_path, res_path, bit_num, models, device):
@@ -125,10 +125,10 @@ def datasets_test(test_path, res_path, bit_num, models, device):
         pcd_path = test_path + pcd_name
         re_pcd_path = re_path + pcd_name
 
-        BitPerPoint, PeakSignalNoiseRation = single_frame_test(pcd_path, re_pcd_path, bit_num, models, device)
-
+        BitPerPoint, c2c_PSNR, c2p_PSNR = single_frame_test(pcd_path, re_pcd_path, bit_num, models, device)
         res.append(BitPerPoint)
-        res.append(PeakSignalNoiseRation)
+        res.append(c2c_PSNR)
+        res.append(c2p_PSNR)
 
         save_csv(res, csv_path)
         cur_num = cur_num + 1
@@ -139,7 +139,7 @@ def datasets_test(test_path, res_path, bit_num, models, device):
 
 def create_csv(res_path):
     csv_path = res_path + 'result.csv'
-    csv_header = ['id', 'bit_num', 'bpp', 'psnr']
+    csv_header = ['id', 'Code_Bit', 'BPP', 'C2C_PSNR', 'C2P_PSNR']
     save_csv(csv_header, csv_path)
 
     return csv_path
