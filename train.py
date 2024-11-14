@@ -34,7 +34,6 @@ def get_sequences(train_path):
         input.append(block_code)
 
     print('Datasets loaded successfully\n')
-    print(input)
     input = [item for sublist in input for sequence in sublist for item in sequence]
     input = np.asarray(input).reshape(1, -1)
     input_tensor, _ = du.array2tensor(input)
@@ -42,12 +41,12 @@ def get_sequences(train_path):
     return input_tensor
 
 
-def stacked_training(input_tensor, models, device, batch_size, names, epochs):
+def stacked_training(input_tensor, models, device, batch_size, names, num_epochs):
     input = input_tensor
     for i in range(4):
         dataloader = get_dataloader(batch_size, input, input, device)
         encoder = models[i]
-        epochs = epochs[i] 
+        epochs = num_epochs[i] 
         print('{} encoder training start'.format(names[i]))
         encoder = mu.train_model(encoder, dataloader, epochs)
         print('{} encoder training finished\n'.format(names[i]))
@@ -94,9 +93,9 @@ if __name__ == '__main__':
     models = mu.get_models(device)
     batch_size = 4096
     names = ['pre', 'mid', 'post', 'last']
-    epochs = [1000, 2000, 2500, 3000]
+    num_epochs = [1000, 2000, 2500, 3000]
     models = stacked_training(input_tensor, models, device, 
-                              batch_size, names, epochs)
+                              batch_size, names, num_epochs)
 
     save_path = './run/train/'
     save_training(models, save_path, names)
