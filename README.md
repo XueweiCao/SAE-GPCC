@@ -25,13 +25,17 @@ pip install -r requirements.txt
 ```
 
 ## Train
+1. Put datasets in ./datasets/train/
+2. Train models
 ```
 python ./train.py
 ```
-Train results will be saved in ./run/train/
+3. Train results will be saved in ./run/train/
 
 ## Test
+1. Put datasets in ./datasets/test/
+2. Test datasets
 ```
 python ./test.py
-``` 
-Test results will be saved in ./run/test/
+```
+3. Test results will be saved in ./run/test/
