@@ -5,5 +5,6 @@ For training and testing, your directory structure should look like this
  `└──test`  <br/>
 
 ## Download
-You can download datasets from:   
+1. You can download sample datasets from:   
 https://drive.google.com/file/d/17rv4KtHI5nkW8OvI_KvR4lnQg7mOqHC2/view?usp=sharing
+2. The samples are generated from ModelNet40. All contain 4096 points.
