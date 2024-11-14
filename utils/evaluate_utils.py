@@ -9,7 +9,12 @@ def get_projection(normal, vector):
     return project
 
 
-def get_RMSE(ref_pcd, res_pcd):
+def get_norm(vector):
+    norm = np.linalg.norm(vector)
+    return norm
+
+
+def get_RMSE(ref_pcd, res_pcd, mode):
     ref_points = np.asarray(ref_pcd.points)
     res_points = np.asarray(res_pcd.points)
 
@@ -24,8 +29,13 @@ def get_RMSE(ref_pcd, res_pcd):
         ref_point = ref_points[idx[0]]
         normal = ref_pcd.normals[idx[0]]
         vector = point - ref_point
-        project = get_projection(normal, vector)
-        MeanSquareError.append(project ** 2)
+        if mode == 'c2p':
+            distance = get_projection(normal, vector)
+        elif mode == 'c2c':
+            distance = get_norm(vector)
+        else:
+            print('Mode input error.\n')
+        MeanSquareError.append(distance ** 2)
 
     RootMeanSquareError = np.sqrt(np.mean(MeanSquareError))
     return RootMeanSquareError
@@ -56,14 +66,21 @@ def get_resolution(pcd):
 
 
 def get_PSNR(ref_pcd, res_pcd):
-    RootMeanSquareError1 = get_RMSE(ref_pcd, res_pcd)
-    RootMeanSquareError2 = get_RMSE(res_pcd, ref_pcd)
-    RootMeanSquareError = np.max([RootMeanSquareError1, RootMeanSquareError2])
+    mode = 'c2c'
+    c2c_RMSE1 = get_RMSE(ref_pcd, res_pcd, mode)
+    c2c_RMSE2 = get_RMSE(res_pcd, ref_pcd, mode)
+    c2c_RMSE = np.max([c2c_RMSE1, c2c_RMSE2])
+
+    mode = 'c2p'
+    c2p_RMSE1 = get_RMSE(ref_pcd, res_pcd, mode)
+    c2p_RMSE2 = get_RMSE(res_pcd, ref_pcd, mode)
+    c2p_RMSE = np.max([c2p_RMSE1, c2p_RMSE2])
 
     resolution = get_resolution(ref_pcd)
-
-    PeakSignalNoiseRatio = 20 * np.log10(resolution / RootMeanSquareError)
-    return PeakSignalNoiseRatio
+    c2c_PSNR = 20 * np.log10(resolution / c2c_RMSE)
+    c2p_PSNR = 20 * np.log10(resolution / c2p_RMSE)
+    
+    return c2c_PSNR, c2p_PSNR
 
 
 def get_BPP(encoded, npoint):
