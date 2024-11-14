@@ -1,5 +1,5 @@
 ## Notice
-You should put 4 trained models in ./model/option/ before test
+You should put 4 trained models in ./model/option/ before test.
 
 ## Download
 You can download trained models from:  
