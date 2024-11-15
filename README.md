@@ -33,9 +33,10 @@ python ./train.py
 3. Train results will be saved in ./run/train/
 
 ## Test
-1. Put datasets in ./datasets/test/
-2. Test datasets
+1. Put trained models in ./model/option/
+2. Put datasets in ./datasets/test/
+3. Test datasets
 ```
 python ./test.py
 ```
-3. Test results will be saved in ./run/test/
+4. Test results will be saved in ./run/test/
